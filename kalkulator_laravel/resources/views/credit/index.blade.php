@@ -1,0 +1,76 @@
+@extends('layouts.main')
+
+@section('content')
+<article class="box post">
+    <header>
+        <h2>Oblicz swoją <strong>miesięczną ratę</strong></h2>
+    </header>
+    
+    <form action="" method="post">
+        @csrf 
+        
+        <div class="row gtr-50 gtr-uniform">
+            <div class="col-12">
+                <label for="id_amount">Kwota kredytu (zł):</label>
+                <input id="id_amount" type="text" name="amount" value="{{ $amount ?? '' }}" style="background-color: #fff; padding: 0.5em;" />
+            </div>
+            <div class="col-6 col-12-mobilep">
+                <label for="id_years">Liczba lat:</label>
+                <input id="id_years" type="text" name="years" value="{{ $years ?? '' }}" style="background-color: #fff; padding: 0.5em;" />
+            </div>
+            <div class="col-6 col-12-mobilep">
+                <label for="id_rate">Oprocentowanie (%):</label>
+                <input id="id_rate" type="text" name="rate" value="{{ $rate ?? '' }}" style="background-color: #fff; padding: 0.5em;" />
+            </div>
+            <div class="col-12">
+                <ul class="actions">
+                    <li><input type="submit" value="Oblicz ratę" class="button icon solid fa-calculator" /></li>
+                </ul>
+            </div>
+        </div>
+    </form>
+
+    @if(!empty($messages))
+        <div style="margin-top: 2em; padding: 1.5em; border: 2px solid #f56a6a; background-color: #fcebeb; border-radius: 0.5em;">
+            <h3 style="color: #f56a6a; margin-bottom: 0.5em;">Wystąpiły błędy:</h3>
+            <ul style="margin-bottom: 0;">
+            @foreach($messages as $msg)
+                <li>{{ $msg }}</li>
+            @endforeach
+            </ul>
+        </div>
+    @endif
+
+    @if(isset($result))
+        <div style="margin-top: 2em; padding: 2em; background-color: #e6f6e6; border-left: 5px solid #4CAF50; border-radius: 0.5em;">
+            <h3 style="margin-bottom: 0.5em;">Wynik obliczeń:</h3>
+            <p style="font-size: 1.5em; font-weight: bold; margin: 0; color: #333;">Miesięczna rata: {{ $result }} zł</p>
+        </div>
+    @endif
+</article>
+@endsection
+
+@section('sidebar')
+<section>
+    <ul class="divided">
+        <li>
+            <article class="box excerpt">
+                <header>
+                    <span class="date">Ważne</span>
+                    <h3>Jak działa kalkulator?</h3>
+                </header>
+                <p>Kalkulator podaje kwotę szacunkową (ratę stałą) bez kosztów okołokredytowych.</p>
+            </article>
+        </li>
+        <li>
+            <article class="box excerpt">
+                <header>
+                    <span class="date">Wskazówka</span>
+                    <h3>Wpisywanie danych</h3>
+                </header>
+                <p>Pamiętaj, aby oprocentowanie wpisywać jako liczbę (np. 8 lub 8.5), bez znaku procenta na końcu.</p>
+            </article>
+        </li>
+    </ul>
+</section>
+@endsection
