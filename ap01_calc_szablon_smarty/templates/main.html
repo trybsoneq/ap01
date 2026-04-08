@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>{$page_title|default:"Kalkulator Kredytowy"}</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="{$app_url}/assets/css/main.css" />
+    </head>
+    <body class="homepage is-preload">
+        <div id="page-wrapper">
+
+            <section id="header">
+                <div class="container">
+                    <h1 id="logo"><a href="{$app_url}">{$page_title|default:"Kalkulator Raty"}</a></h1>
+                    <p>{$page_description|default:"Proste narzędzie do obliczania miesięcznej raty kredytu."}</p>
+
+                    <nav id="nav">
+                        <ul>
+                            <li><a class="icon solid fa-home" href="{$app_url}"><span>Start</span></a></li>
+                            <li><a class="icon solid fa-calculator" href="{$app_url}/app/credit.php"><span>Kalkulator</span></a></li>
+                            <li><a class="icon solid fa-info-circle" href="#"><span>O nas</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </section>
+
+            <section id="main">
+                <div class="container">
+                    <div class="row">
+                        <div id="content" class="col-8 col-12-medium">
+                            {block name=content} Domyślna treść zawartości... {/block}
+                        </div>
+
+                        <div id="sidebar" class="col-4 col-12-medium">
+                            {block name=sidebar} Domyślny pasek boczny... {/block}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="footer">
+                <div class="container">
+                    <div id="copyright" class="container">
+                        <ul class="links">
+                            {block name=footer}
+                            <li>&copy; Kalkulator Kredytowy. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                            {/block}
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <script src="{$app_url}/assets/js/jquery.min.js"></script>
+        <script src="{$app_url}/assets/js/browser.min.js"></script>
+        <script src="{$app_url}/assets/js/breakpoints.min.js"></script>
+        <script src="{$app_url}/assets/js/util.js"></script>
+        <script src="{$app_url}/assets/js/main.js"></script>
+    </body>
+</html>
