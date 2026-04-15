@@ -6,6 +6,13 @@
         <h2>Oblicz swoją <strong>miesięczną ratę</strong></h2>
     </header>
     
+    @guest
+    <div style="background-color: #fff3cd; color: #856404; padding: 1em; border-left: 5px solid #ffeeba; margin-bottom: 2em; border-radius: 5px;">
+        <strong>Tryb testowy!</strong> Bez logowania możesz obliczyć ratę tylko do <strong>10 000 zł</strong>, max <strong>2 lat</strong> i oprocentowania max <strong>2%</strong>. <br>
+        <a href="{{ url('/login') }}" style="color: #d39e00; font-weight: bold;">Zaloguj się</a>, aby uzyskać pełen dostęp bez limitów.
+    </div>
+    @endguest
+    
     <form action="" method="post">
         @csrf 
         

@@ -16,7 +16,26 @@
                         <ul>
                             <li><a class="icon solid fa-home" href="{{ url('/') }}"><span>Start</span></a></li>
                             <li><a class="icon solid fa-calculator" href="{{ url('/') }}"><span>Kalkulator</span></a></li>
-                            <li><a class="icon solid fa-info-circle" href="#"><span>O nas</span></a></li>
+                            
+                            @guest
+                                <li><a class="icon solid fa-lock" href="{{ url('/login') }}"><span>Zaloguj</span></a></li>
+                            @endguest
+                            
+                            @auth
+                                @if(Auth::user()->role === 'admin')
+                                    <li><a class="icon solid fa-cog" href="{{ url('/admin') }}" style="color: red;"><span>Panel Admina</span></a></li>
+                                @endif
+
+                                <li>
+                                    <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        <button type="submit" style="background:none; border:none; box-shadow:none; padding:0; margin:0; cursor:pointer; color:inherit;">
+                                            <a class="icon solid fa-sign-out-alt"><span>Wyloguj</span></a>
+                                        </button>
+                                    </form>
+                                </li>
+                            @endauth
+                            
                         </ul>
                     </nav>
                 </div>

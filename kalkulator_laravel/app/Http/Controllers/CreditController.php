@@ -34,6 +34,11 @@ class CreditController extends Controller
             if (!is_numeric($rate)) $messages[] = 'Oprocentowanie musi być liczbą.';
             else if ($rate < 0) $messages[] = 'Oprocentowanie nie może być ujemne.';
         }
+        if (empty($messages) && !\Illuminate\Support\Facades\Auth::check()) {
+            if ($amount > 10000) $messages[] = 'Darmowa wersja obsługuje kwoty tylko do 10 000 zł.';
+            if ($years > 2) $messages[] = 'Darmowa wersja pozwala na okres maksymalnie 2 lat.';
+            if ($rate > 2) $messages[] = 'Darmowa wersja pozwala na maksymalnie 2% oprocentowania.';
+        }
 
         if (empty($messages)) {
             $amount = floatval($amount);
