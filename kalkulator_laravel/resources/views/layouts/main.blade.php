@@ -16,6 +16,8 @@
                         <ul>
                             <li><a class="icon solid fa-home" href="{{ url('/') }}"><span>Start</span></a></li>
                             <li><a class="icon solid fa-calculator" href="{{ url('/') }}"><span>Kalkulator</span></a></li>
+
+                            <li><a class="icon solid fa-database" href="{{ url('/accounts') }}"><span>Baza Kont</span></a></li>
                             
                             @guest
                                 <li><a class="icon solid fa-lock" href="{{ url('/login') }}"><span>Zaloguj</span></a></li>
