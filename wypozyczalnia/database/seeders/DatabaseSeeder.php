@@ -46,5 +46,9 @@ class DatabaseSeeder extends Seeder
         $employee->save();
 
         $employee->roles()->attach(2);
+        
+        $this->call([
+            CarSeeder::class,
+        ]);
     }
 }

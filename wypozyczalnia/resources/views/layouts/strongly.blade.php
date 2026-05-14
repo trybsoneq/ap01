@@ -29,20 +29,32 @@
                 <nav id="nav">
                     <ul>
                         <li><a class="icon solid fa-home" href="/dashboard"><span>Panel Główny</span></a></li>
-                        <li><a class="icon solid fa-car" href="#"><span>Katalog Aut</span></a></li>
+                        <li><a class="icon solid fa-car" href="{{ route('cars.index') }}"><span>Katalog Aut</span></a></li>
                         
-                        @if(Auth::user()->roles->contains('name', 'Administrator'))
-                            <li><a class="icon solid fa-users" href="{{ route('users.index') }}"><span>Użytkownicy</span></a></li>
-                        @endif
+                        @auth
+                            <li><a class="icon solid fa-list" href="{{ route('reservations.userIndex') }}"><span>Moje Rezerwacje</span></a></li>
+                            
+                            @if(Auth::user()->roles->contains('name', 'Pracownik') || Auth::user()->roles->contains('name', 'Administrator'))
+                                <li><a class="icon solid fa-calendar-alt" href="{{ route('employee.reservations') }}"><span>Wszystkie Rezerwacje</span></a></li>
+                                <li><a class="icon solid fa-edit" href="{{ route('employee.cars') }}"><span>Zarządzaj Flotą</span></a></li>
+                            @endif
 
-                        <li>
-                            <form method="POST" action="{{ route('logout') }}" style="display:inline;">
-                                @csrf
-                                <a class="icon solid fa-sign-out-alt" href="#" onclick="event.preventDefault(); this.closest('form').submit();">
-                                    <span>Wyloguj</span>
-                                </a>
-                            </form>
-                        </li>
+                            @if(Auth::user()->roles->contains('name', 'Administrator'))
+                                <li><a class="icon solid fa-users" href="{{ route('users.index') }}"><span>Użytkownicy</span></a></li>
+                            @endif
+
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}" style="display:inline;">
+                                    @csrf
+                                    <a class="icon solid fa-sign-out-alt" href="#" onclick="event.preventDefault(); this.closest('form').submit();">
+                                        <span>Wyloguj</span>
+                                    </a>
+                                </form>
+                            </li>
+                        @else
+                            <li><a class="icon solid fa-sign-in-alt" href="{{ route('login') }}"><span>Zaloguj</span></a></li>
+                            <li><a class="icon solid fa-user-plus" href="{{ route('register') }}"><span>Zarejestruj</span></a></li>
+                        @endauth
                     </ul>
                 </nav>
 
